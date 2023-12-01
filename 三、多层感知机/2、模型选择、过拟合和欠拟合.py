@@ -63,6 +63,15 @@ def train(train_features, test_features, train_labels, test_labels,
     print('weight:', net[0].weight.data.numpy())
 
 
-# 从多项式特征中选择前4个维度，即1,x,x^2/2!,x^3/3!
-train(poly_features[:n_train, :4], poly_features[n_train:, :4],
+# # #####################################三阶多项式函数拟合(正常)#############################
+# # 从多项式特征中选择前4个维度，即1,x,x^2/2!,x^3/3!
+# train(poly_features[:n_train, :4], poly_features[n_train:, :4],
+#       labels[:n_train], labels[n_train:])
+# #####################################线性函数拟合(欠拟合)#############################
+# 从多项式特征中选择前2个维度，即1和x
+train(poly_features[:n_train, :2], poly_features[n_train:, :2],
       labels[:n_train], labels[n_train:])
+# # #####################################线性函数拟合(过拟合)#############################
+# # 从多项式特征中选取所有维度
+# train(poly_features[:n_train, :], poly_features[n_train:, :],
+#       labels[:n_train], labels[n_train:], num_epochs=1500)
